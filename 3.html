@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body style="direction: rtl;" class="bg-light">
+    <div id="app" class="container">
+      <div class="row">
+
+        <div class="col-6">
+          <h2>افزودن مقاله</h2>
+          <label for="id_flname">نام و نام خانوادگی</label>
+          <input v-model="n" type="text" id="id_flname" class="form-control">
+          <label for="id_subject">عنوان مقاله</label>
+          <input v-model="h" type="text" id="id_subject" class="form-control">
+          <label for="id_body">مقاله</label>
+          <textarea v-model="b" name="body" id="id_body" cols="30" rows="10" class="form-control"></textarea>
+          <button class="btn btn-outline-success mt-3" @click="create" >افزودن</button>
+        </div>
+        <div class="col-6 mt-5">
+          <p class="text-success display-5">شما {{ counter }} مقاله ثبت کردید</p>
+        </div>
+
+      </div>
+
+      <div class="row app">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+          <div class="col" v-for="project in projects">
+            <div class="card h-100">
+              <img src="./images/5.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{ project.flname }}</h5>
+                <p class="text-muted">{{ project.subject }}</p>
+                <p class="card-text">{{ project.body }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var app = new Vue({
+          el: '#app',
+          data: {
+            n: '',
+            h: '',
+            b: '',
+
+            projects:[
+              {flname: 'Haji', subject: 'Yeah, Thats ME!', body: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.'},
+              {flname: 'LPSM', subject: 'ispum', body: 'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.'}   
+            ]
+          },
+          methods:{
+            create: function(){
+              p = {flname: this.n, subject: this.h, body: this.b}
+              this.projects.push(p)
+              this.n= ''
+              this.h= ''
+              this.b= ''
+            }
+          },
+
+          computed:{
+            counter:function(){
+              return this.projects.length
+            }
+          }
+        })
+    </script>
+  </body>
+</html>
